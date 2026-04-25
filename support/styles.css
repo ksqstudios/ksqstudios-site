@@ -1,0 +1,808 @@
+/* ============================================================
+   KSQ Studios — styles.css
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Paper & ink — calm, letterhead-quality background that lets
+     each app's gradient do its own thing in its card. */
+  --paper:        #F8F5F0;
+  --paper-warm:   #F1ECE3;
+  --ink:          #1F1D1B;
+  --ink-soft:     #4A4641;
+  --ink-mute:     #837C73;
+  --rule:         #D9D2C5;
+
+  /* Accent — a warm graphite/bronze that sits between the
+     two app palettes without competing with either. */
+  --accent:       #6B5840;
+  --accent-soft:  #8C7558;
+
+  /* Minuted brand stops (cool→warm) */
+  --m-cool:       #378ADD;
+  --m-mid:        #7F77DD;
+  --m-warm:       #D85A30;
+
+  /* Winnowed brand stops (harvest arc) */
+  --w-sage:       #7A9B5E;
+  --w-wheat:      #D4B56A;
+  --w-rust:       #C25A2F;
+  --w-burgundy:   #6B1A1E;
+
+  /* Type scale — fluid clamps so the page reads on phone and laptop alike */
+  --fs-eyebrow:   clamp(11px, 0.7vw + 9px, 13px);
+  --fs-section:   clamp(11px, 0.7vw + 9px, 13px);
+  --fs-body:      clamp(15px, 0.4vw + 14px, 17px);
+  --fs-lede:      clamp(17px, 0.6vw + 15px, 21px);
+  --fs-hero:      clamp(38px, 6vw + 12px, 76px);
+  --fs-app-name:  clamp(28px, 2.4vw + 18px, 40px);
+  --fs-app-tag:   clamp(17px, 0.6vw + 15px, 21px);
+
+  /* Spacing — generous, magazine-grade rhythm */
+  --space-page:   clamp(24px, 4vw, 56px);
+  --space-block:  clamp(80px, 9vw, 140px);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  font-feature-settings: 'kern', 'liga', 'ss01', 'cv11';
+}
+
+/* Subtle paper texture — not a generic noise overlay,
+   just a hint of variation so the cream feels printed
+   instead of digital. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top left, rgba(214, 195, 165, 0.12), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(160, 140, 110, 0.08), transparent 60%);
+  z-index: 0;
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ---------- Header ---------- */
+.site-header {
+  padding: clamp(28px, 3.5vw, 48px) var(--space-page);
+}
+
+.wordmark-row {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.monogram {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+
+.monogram sup {
+  font-size: 0.55em;
+  font-weight: 500;
+  margin-left: 0.04em;
+  top: -0.55em;
+  position: relative;
+  color: var(--accent-soft);
+}
+
+.monogram--small {
+  font-size: 16px;
+}
+
+.wordmark {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  font-weight: 500;
+  font-variation-settings: 'opsz' 14;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: clamp(60px, 9vw, 140px) var(--space-page) clamp(80px, 11vw, 160px);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 28px;
+}
+
+.hero-headline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: var(--fs-hero);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 144;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 clamp(28px, 3vw, 40px);
+  max-width: 18ch;
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-variation-settings: 'opsz' 144;
+}
+
+.hero-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fs-lede);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  margin: 0;
+}
+
+/* ---------- Section labels (small caps anchors) ---------- */
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fs-section);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin: 0 0 clamp(36px, 4vw, 56px);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ---------- Apps grid ---------- */
+.apps {
+  padding: 0 var(--space-page) var(--space-block);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+  gap: clamp(24px, 3vw, 40px);
+}
+
+/* ---------- App card ---------- */
+.app-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 4px 12px rgba(31, 29, 27, 0.04),
+    0 24px 48px -16px rgba(31, 29, 27, 0.08);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 8px 20px rgba(31, 29, 27, 0.06),
+    0 32px 64px -16px rgba(31, 29, 27, 0.12);
+}
+
+/* Card art header — gradient backdrop tinted by app brand,
+   icon floating in the top-leading area like a printed plate. */
+.app-card-art {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.app-card-glow--minuted {
+  background:
+    radial-gradient(ellipse at 25% 35%, var(--m-cool) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, var(--m-warm) 0%, transparent 50%),
+    linear-gradient(135deg, var(--m-cool), var(--m-mid) 50%, var(--m-warm));
+}
+
+.app-card-glow--winnowed {
+  background:
+    radial-gradient(ellipse at 20% 40%, var(--w-sage) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, var(--w-burgundy) 0%, transparent 50%),
+    linear-gradient(135deg, var(--w-sage), var(--w-wheat) 35%, var(--w-rust) 70%, var(--w-burgundy));
+}
+
+/* Subtle film grain on the gradient — keeps it from looking
+   too clean, matches the printed feel of the rest of the page. */
+.app-card-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at top, rgba(255, 255, 255, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.app-icon {
+  position: relative;
+  z-index: 2;
+  width: clamp(120px, 18vw, 160px);
+  height: auto;
+  border-radius: 28px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18))
+          drop-shadow(0 24px 40px rgba(0, 0, 0, 0.22));
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.app-card:hover .app-icon {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Card body — typography lives here */
+.app-card-body {
+  padding: clamp(28px, 3.5vw, 44px) clamp(28px, 3.5vw, 44px) clamp(32px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.app-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: var(--fs-app-name);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 144;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0;
+}
+
+.app-tagline {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: var(--fs-app-tag);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 24;
+  line-height: 1.3;
+  color: var(--accent);
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.app-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 4px 0 0;
+  max-width: 44ch;
+}
+
+.app-actions {
+  margin-top: auto;
+  padding-top: clamp(18px, 2vw, 24px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  align-items: center;
+}
+
+.app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease, gap 0.25s ease;
+}
+
+.app-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  gap: 9px;
+}
+
+.app-link svg {
+  flex-shrink: 0;
+  margin-bottom: 1px;
+  transition: transform 0.25s ease;
+}
+
+.app-link:hover svg {
+  transform: translate(1px, -1px);
+}
+
+.app-status {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-mute);
+  padding: 6px 12px;
+  background: var(--paper-warm);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---------- About ---------- */
+.about {
+  padding: 0 var(--space-page) var(--space-block);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.about-prose {
+  max-width: 60ch;
+}
+
+.about-prose p {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(18px, 0.8vw + 16px, 23px);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 24;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 1.4em;
+}
+
+.about-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.about-prose .name {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ---------- Contact ---------- */
+.contact {
+  padding: 0 var(--space-page) var(--space-block);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 28px 56px;
+  max-width: 720px;
+}
+
+.contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-mute);
+}
+
+.contact-link {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(20px, 1.1vw + 16px, 26px);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 48;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+  width: fit-content;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(40px, 5vw, 64px);
+  padding: clamp(28px, 3vw, 40px) var(--space-page);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.footer-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--ink-mute);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-meta .dot {
+  color: var(--rule);
+}
+
+/* ---------- Doc pages (privacy, support) ---------- */
+.doc {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 80px) var(--space-page) var(--space-block);
+}
+
+.doc-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(38px, 5vw + 12px, 64px);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 144;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 16px;
+  max-width: 18ch;
+}
+
+.doc-title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.doc-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin: 0 0 clamp(48px, 6vw, 72px);
+  padding-bottom: clamp(28px, 3vw, 36px);
+  border-bottom: 1px solid var(--rule);
+  max-width: 60ch;
+}
+
+.doc-body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(15px, 0.4vw + 14px, 17px);
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.doc-body p {
+  margin: 0 0 1.4em;
+  max-width: 64ch;
+}
+
+.doc-body h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(20px, 0.8vw + 16px, 24px);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 24;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 2.2em 0 0.7em;
+}
+
+.doc-body h2:first-child {
+  margin-top: 0;
+}
+
+.doc-body a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.doc-body a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.doc-body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-list li {
+  padding: 14px 18px;
+  background: var(--paper-warm);
+  border-radius: 10px;
+}
+
+.link-list a {
+  border-bottom: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.link-list a:hover {
+  color: var(--accent);
+}
+
+.signoff {
+  margin-top: clamp(48px, 5vw, 72px);
+  padding-top: clamp(28px, 3vw, 36px);
+  border-top: 1px solid var(--rule);
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.signoff em {
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* ---------- Support cards ---------- */
+.support-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: clamp(20px, 2.5vw, 28px);
+  margin: 0 0 clamp(56px, 6vw, 80px);
+}
+
+.support-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 4px 12px rgba(31, 29, 27, 0.04),
+    0 18px 36px -14px rgba(31, 29, 27, 0.08);
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  color: inherit;
+}
+
+.support-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(31, 29, 27, 0.06),
+    0 24px 48px -14px rgba(31, 29, 27, 0.12);
+}
+
+.support-card-art {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: clamp(22px, 3vw, 32px);
+}
+
+.support-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.support-card-glow--minuted {
+  background:
+    radial-gradient(ellipse at 25% 35%, var(--m-cool) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, var(--m-warm) 0%, transparent 50%),
+    linear-gradient(135deg, var(--m-cool), var(--m-mid) 50%, var(--m-warm));
+}
+
+.support-card-glow--winnowed {
+  background:
+    radial-gradient(ellipse at 20% 40%, var(--w-sage) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, var(--w-burgundy) 0%, transparent 50%),
+    linear-gradient(135deg, var(--w-sage), var(--w-wheat) 35%, var(--w-rust) 70%, var(--w-burgundy));
+}
+
+.support-card-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.support-icon {
+  position: relative;
+  z-index: 2;
+  width: clamp(64px, 8vw, 80px);
+  height: auto;
+  border-radius: 16px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2))
+          drop-shadow(0 12px 20px rgba(0, 0, 0, 0.18));
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.support-card:hover .support-icon {
+  transform: translateY(-3px) scale(1.03);
+}
+
+.support-card-body {
+  padding: clamp(22px, 2.6vw, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.support-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(20px, 1vw + 16px, 24px);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 48;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0;
+}
+
+.support-description {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.support-link {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+  transition: gap 0.25s ease;
+}
+
+.support-card:hover .support-link {
+  gap: 9px;
+}
+
+.support-link svg {
+  flex-shrink: 0;
+  margin-bottom: 1px;
+}
+
+.contact-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(22px, 1vw + 18px, 28px);
+  font-weight: 500;
+  font-variation-settings: 'opsz' 48;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+/* ---------- Footer nav ---------- */
+.footer-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--accent);
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- Smaller phones ---------- */
+@media (max-width: 520px) {
+  .hero-headline {
+    max-width: 100%;
+  }
+  .app-card-art {
+    aspect-ratio: 4 / 3;
+  }
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
