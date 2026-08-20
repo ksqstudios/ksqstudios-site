@@ -50,6 +50,13 @@
   --v-bronze:     #5A3318;
   --v-coal:       #1F1108;
 
+  /* Brightened brand stops (positive arc, slate to radiant) */
+  --b-slate:      #3A4148;
+  --b-dusk:       #4E4468;
+  --b-dawn:       #B89654;
+  --b-amber:      #C4832F;
+  --b-radiant:    #D9A621;
+
   /* Type scale — fluid clamps so the page reads on phone and laptop alike */
   --fs-eyebrow:   clamp(11px, 0.7vw + 9px, 13px);
   --fs-section:   clamp(11px, 0.7vw + 9px, 13px);
@@ -296,6 +303,13 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(135deg, var(--v-bronze), var(--v-amber) 42%, var(--v-honey) 100%);
 }
 
+.app-card-glow--brightened {
+  background:
+    radial-gradient(ellipse at 25% 35%, var(--b-dusk) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, var(--b-radiant) 0%, transparent 50%),
+    linear-gradient(135deg, var(--b-slate), var(--b-dusk) 25%, var(--b-dawn) 50%, var(--b-amber) 75%, var(--b-radiant));
+}
+
 /* Subtle film grain on the gradient — keeps it from looking
    too clean, matches the printed feel of the rest of the page. */
 .app-card-art::after {
@@ -396,6 +410,49 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
   margin-bottom: 1px;
   transition: transform 0.25s ease;
+}
+
+/* Coming soon badge: stands where the App Store badge sits until an
+   app is approved. Matched to the badge's 160x53 footprint so the card
+   does not reflow when the real badge replaces it. Outlined rather than
+   filled: it should read as a placeholder, not compete with the live
+   download badges on the cards above it. */
+.coming-soon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: 160px;
+  height: 53px;
+  padding: 0 13px;
+  box-sizing: border-box;
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink-soft);
+  background: transparent;
+}
+
+.coming-soon-badge svg {
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+
+.coming-soon-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.coming-soon-kicker {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.coming-soon-store {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink-mute);
 }
 
 .app-link:hover svg {
@@ -733,6 +790,20 @@ a { color: inherit; text-decoration: none; }
     radial-gradient(ellipse at 25% 35%, var(--en-stone) 0%, transparent 55%),
     radial-gradient(ellipse at 75% 70%, var(--en-iron) 0%, transparent 50%),
     linear-gradient(135deg, var(--en-bone), var(--en-stone) 25%, var(--en-slate) 50%, var(--en-graphite) 75%, var(--en-iron));
+}
+
+.support-card-glow--vesperine {
+  background:
+    radial-gradient(ellipse at 28% 32%, var(--v-honey) 0%, transparent 52%),
+    radial-gradient(ellipse at 78% 74%, var(--v-coal) 0%, transparent 55%),
+    linear-gradient(135deg, var(--v-bronze), var(--v-amber) 42%, var(--v-honey) 100%);
+}
+
+.support-card-glow--brightened {
+  background:
+    radial-gradient(ellipse at 25% 35%, var(--b-dusk) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 70%, var(--b-radiant) 0%, transparent 50%),
+    linear-gradient(135deg, var(--b-slate), var(--b-dusk) 25%, var(--b-dawn) 50%, var(--b-amber) 75%, var(--b-radiant));
 }
 
 .support-card-art::after {
