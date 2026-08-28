@@ -1,10 +1,10 @@
 /* ============================================================
-   KSQ Studios — styles.css
+   KSQ Studios, styles.css
    ============================================================ */
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Paper & ink — calm, letterhead-quality background that lets
+  /* Paper and ink, a calm letterhead-quality background that lets
      each app's gradient do its own thing in its card. */
   --paper:        #F8F5F0;
   --paper-warm:   #F1ECE3;
@@ -13,7 +13,7 @@
   --ink-mute:     #837C73;
   --rule:         #D9D2C5;
 
-  /* Accent — a warm graphite/bronze that sits between the
+  /* Accent, a warm graphite/bronze that sits between the
      two app palettes without competing with either. */
   --accent:       #6B5840;
   --accent-soft:  #8C7558;
@@ -29,14 +29,14 @@
   --w-rust:       #C25A2F;
   --w-burgundy:   #6B1A1E;
 
-  /* Eclipsed brand stops (Vigil — cool clarity to fevered crimson) */
+  /* Eclipsed brand stops (Vigil, cool clarity to fevered crimson) */
   --e-slate:      #3A5878;
   --e-mist:       #4F5680;
   --e-plum:       #6E4569;
   --e-rust:       #8B3D45;
   --e-crimson:    #5E1418;
 
-  /* Endured brand stops (Bone-to-Iron — achromatic depth) */
+  /* Endured brand stops (Bone to Iron, achromatic depth) */
   --en-bone:      #E8E1D0;
   --en-stone:     #B0A998;
   --en-slate:     #605C50;
@@ -71,7 +71,7 @@
   --c-channel:    #3E829B;
   --c-signal:     #5FBFCF;
 
-  /* Type scale — fluid clamps so the page reads on phone and laptop alike */
+  /* Type scale, fluid clamps so the page reads on phone and laptop alike */
   --fs-eyebrow:   clamp(11px, 0.7vw + 9px, 13px);
   --fs-section:   clamp(11px, 0.7vw + 9px, 13px);
   --fs-body:      clamp(15px, 0.4vw + 14px, 17px);
@@ -80,7 +80,7 @@
   --fs-app-name:  clamp(28px, 2.4vw + 18px, 40px);
   --fs-app-tag:   clamp(17px, 0.6vw + 15px, 21px);
 
-  /* Spacing — generous, magazine-grade rhythm */
+  /* Spacing, generous magazine-grade rhythm */
   --space-page:   clamp(24px, 4vw, 56px);
   --space-block:  clamp(80px, 9vw, 140px);
 }
@@ -107,7 +107,7 @@ body {
   font-feature-settings: 'kern', 'liga', 'ss01', 'cv11';
 }
 
-/* Subtle paper texture — not a generic noise overlay,
+/* Subtle paper texture, not a generic noise overlay,
    just a hint of variation so the cream feels printed
    instead of digital. */
 body::before {
@@ -265,7 +265,7 @@ a { color: inherit; text-decoration: none; }
     0 32px 64px -16px rgba(31, 29, 27, 0.12);
 }
 
-/* Card art header — gradient backdrop tinted by app brand,
+/* Card art header, a gradient backdrop tinted by app brand,
    icon floating in the top-leading area like a printed plate. */
 .app-card-art {
   position: relative;
@@ -338,7 +338,7 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(135deg, var(--c-asphalt), var(--c-slate) 25%, var(--c-steel) 50%, var(--c-channel) 75%, var(--c-signal));
 }
 
-/* Subtle film grain on the gradient — keeps it from looking
+/* Subtle film grain on the gradient, which keeps it from looking
    too clean, matches the printed feel of the rest of the page. */
 .app-card-art::after {
   content: '';
@@ -365,7 +365,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-4px) scale(1.02);
 }
 
-/* Card body — typography lives here */
+/* Card body, typography lives here */
 .app-card-body {
   padding: clamp(28px, 3.5vw, 44px) clamp(28px, 3.5vw, 44px) clamp(32px, 4vw, 48px);
   display: flex;
