@@ -17,21 +17,25 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ksqstudios.com/og-image.png">
 
-  <meta name="theme-color" content="#F8F5F0">
+  <meta name="theme-color" content="#111110">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <a href="/" class="wordmark-row" aria-label="KSQ Studios home">
-      <span class="monogram" aria-hidden="true">K<sup>2</sup></span>
-      <span class="wordmark">KSQ Studios</span>
-    </a>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="mark" href="/" aria-label="KSQ Studios home"><span class="k2" aria-hidden="true">K<sup>2</sup></span>KSQ Studios</a>
+      <nav aria-label="Site">
+        <a href="/#apps">Apps</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -233,23 +237,16 @@
 
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-mark">
-        <span class="monogram monogram--small" aria-hidden="true">K<sup>2</sup></span>
-        <span>KSQ Studios LLC</span>
-      </div>
-      <nav class="footer-nav" aria-label="Footer">
+  <footer class="foot">
+    <div class="foot-inner">
+      <span class="k2 small" aria-hidden="true">K<sup>2</sup></span>
+      <nav aria-label="Footer">
         <a href="/">Home</a>
         <a href="/privacy">Privacy</a>
         <a href="/support">Support</a>
         <a href="mailto:helloworld@ksqstudios.com">Contact</a>
       </nav>
-      <div class="footer-meta">
-        <span>&copy; 2026 KSQ Studios LLC</span>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <span>Made in Pennsylvania</span>
-      </div>
+      <p>2026 KSQ Studios LLC. Made in Pennsylvania.</p>
     </div>
   </footer>
 

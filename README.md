@@ -2,28 +2,29 @@
 
 The marketing site for KSQ Studios LLC at [ksqstudios.com](https://ksqstudios.com).
 
-A static, single-page site introducing the studio and linking to its two product sites (minuted.org and winnowed.app).
+A static site introducing the studio and its ten apps, with privacy and support pages.
+
+The studio after hours: a dark room so the ten apps' colors can glow. On the home page the ten five-color arcs stand side by side like instruments on a bench, each with a reading that drifts as if live; pointing at one names its app. Each app entry draws its arc in as it scrolls into view. `scripts.js` runs both; nothing is stored or sent.
 
 ## Stack
 
 - Plain HTML + CSS, no build step
 - Hosted on Cloudflare Pages
-- Typography: Fraunces (display) + Inter (body), loaded from Google Fonts
+- Typography: Geist and Geist Mono, loaded from Google Fonts
 - Domain via Cloudflare Registrar
 
 ## Structure
 
 ```
 .
-├── index.html          # The page
-├── styles.css          # All styles
-├── images/
-│   ├── minuted-icon.png
-│   └── winnowed-icon.png
-├── favicon.png         # TODO: 48x48
-├── apple-touch-icon.png # TODO: 180x180
-├── og-image.png        # TODO: 1200x630
-└── README.md
+├── index.html           # the page
+├── privacy.html         # studio privacy policy
+├── support.html         # links to each app's support page
+├── styles.css           # all styles
+├── scripts.js           # the wall of arcs and the entries
+├── images/              # the ten app icons
+├── favicon.png, favicon.ico, apple-touch-icon.png
+└── og-image.png         # 1200x630 link preview
 ```
 
 ## Local preview
@@ -39,12 +40,9 @@ python3 -m http.server 8000
 
 The site auto-deploys from the `main` branch via Cloudflare Pages. Push to GitHub and the site updates within ~30 seconds.
 
-## TODO
+## Analytics
 
-- [ ] Add favicon.png (48×48)
-- [ ] Add apple-touch-icon.png (180×180)
-- [ ] Add og-image.png (1200×630)
-- [ ] Update App Store status pills once apps are live (replace `<span class="app-status">` with actual App Store links)
+None. Keep it that way.
 
 ## License
 

@@ -1,429 +1,255 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="KSQ Studios is an independent software studio in Pennsylvania building thoughtful apps for iPhone, iPad, and Mac. Makers of Adjourned, Brightened, Commuted, Eclipsed, Endured, Minuted, Moratine, Reckonry, Vesperine, and Winnowed.">
-
-  <title>KSQ Studios, independent software for Apple platforms</title>
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="KSQ Studios, independent software for Apple platforms">
-  <meta property="og:description" content="An independent software studio in Pennsylvania building thoughtful apps for iPhone, iPad, and Mac. Makers of Adjourned, Brightened, Commuted, Eclipsed, Endured, Minuted, Moratine, Reckonry, Vesperine, and Winnowed.">
-  <meta property="og:url" content="https://ksqstudios.com">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ksqstudios.com/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://ksqstudios.com/og-image.png">
-
-  <meta name="theme-color" content="#F8F5F0">
-
-  <link rel="canonical" href="https://ksqstudios.com">
-
-  <!-- Fonts: Fraunces (display, with optical sizing + italic) + Inter (body) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Structured data, Organization -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "KSQ Studios",
-    "alternateName": "KSQ Studios LLC",
-    "url": "https://ksqstudios.com",
-    "email": "helloworld@ksqstudios.com",
-    "founder": {
-      "@type": "Person",
-      "name": "Kurt Klein"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "PA",
-      "addressCountry": "US"
-    }
-  }
-  </script>
-
-  <link rel="stylesheet" href="/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KSQ Studios, independent software for Apple platforms</title>
+<meta name="description" content="KSQ Studios is an independent software studio in Pennsylvania building thoughtful apps for iPhone, iPad, and Mac. Makers of Adjourned, Brightened, Commuted, Eclipsed, Endured, Minuted, Moratine, Reckonry, Vesperine, and Winnowed.">
+<meta property="og:title" content="KSQ Studios, independent software for Apple platforms">
+<meta property="og:description" content="An independent software studio in Pennsylvania building thoughtful apps for iPhone, iPad, and Mac.">
+<meta property="og:url" content="https://ksqstudios.com">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ksqstudios.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ksqstudios.com/og-image.png">
+<meta name="theme-color" content="#111110">
+<link rel="canonical" href="https://ksqstudios.com">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "KSQ Studios",
+  "alternateName": "KSQ Studios LLC",
+  "url": "https://ksqstudios.com",
+  "email": "helloworld@ksqstudios.com",
+  "founder": { "@type": "Person", "name": "Kurt Klein" },
+  "address": { "@type": "PostalAddress", "addressRegion": "PA", "addressCountry": "US" }
+}
+</script>
+<link rel="stylesheet" href="/styles.css">
+<script defer src="/scripts.js"></script>
 </head>
 <body>
 
-  <!-- Studio header -->
-  <header class="site-header">
-    <div class="wordmark-row">
-      <span class="monogram" aria-hidden="true">K<sup>2</sup></span>
-      <span class="wordmark">KSQ Studios</span>
+<header class="bar">
+  <div class="bar-inner">
+    <a class="mark" href="/" aria-label="KSQ Studios home"><span class="k2" aria-hidden="true">K<sup>2</sup></span>KSQ Studios</a>
+    <nav aria-label="Site">
+      <a href="#apps">Apps</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <p class="eyebrow">An independent studio in Berwyn, Pennsylvania</p>
+    <h1>Ten small apps, each keeping one honest record.</h1>
+    <p class="lede">
+      KSQ Studios is a one-person studio building apps for iPhone, iPad, and
+      Mac. Quiet design. Honest pricing. No subscriptions for things that
+      should be one-time purchases.
+    </p>
+
+    <!-- The instruments. Each app has an arc of five colors that reports
+         its one reading, from the cost of a meeting to the daylight you
+         gathered. Here the ten arcs stand side by side, and each one's
+         reading drifts as if it were live. Hover or tap one to name it. -->
+    <div class="wall" id="wall">
+      <div class="pipes">
+        <a class="pipe" href="#minuted" data-name="Minuted" data-tag="Every meeting has a price tag." style="--arc: linear-gradient(#378add, #7f77dd, #d85a30)"><span class="read"></span><img src="/images/minuted-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#winnowed" data-name="Winnowed" data-tag="Keep what counts. Cut the rest." style="--arc: linear-gradient(#7a9b5e, #d4b56a, #c9774a, #a03d1e, #6b1a1e)"><span class="read"></span><img src="/images/winnowed-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#endured" data-name="Endured" data-tag="Hard work, honestly recorded." style="--arc: linear-gradient(#e8e1d0, #b0a998, #605c50, #2a2926, #0a0a09)"><span class="read"></span><img src="/images/endured-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#eclipsed" data-name="Eclipsed" data-tag="Sleep debt, made visible." style="--arc: linear-gradient(#3a5878, #4f5680, #6e4569, #8b3d45, #5e1418)"><span class="read"></span><img src="/images/eclipsed-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#vesperine" data-name="Vesperine" data-tag="Write once, at the end of the day." style="--arc: linear-gradient(#f5f1e8, #edc788, #a87838, #5a3318, #1f1108)"><span class="read"></span><img src="/images/vesperine-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#brightened" data-name="Brightened" data-tag="The daylight you gathered." style="--arc: linear-gradient(#d9a621, #c4832f, #b89654, #4e4468, #3a4148)"><span class="read"></span><img src="/images/brightened-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#reckonry" data-name="Reckonry" data-tag="Record what you reckon before you start." style="--arc: linear-gradient(#1f5f5b, #2e4e6e, #46406e, #6e3a78, #8e2358)"><span class="read"></span><img src="/images/reckonry-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#commuted" data-name="Commuted" data-tag="Your commute costs hours before it costs dollars." style="--arc: linear-gradient(#5fbfcf, #3e829b, #33546b, #1e3040, #0e1620)"><span class="read"></span><img src="/images/commuted-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#adjourned" data-name="Adjourned" data-tag="End the meetings you should not be in." style="--arc: linear-gradient(#4a90c2, #d9a441, #e58a4e, #de5845, #c7302b)"><span class="read"></span><img src="/images/adjourned-icon.png" alt="" width="56" height="56"></a>
+        <a class="pipe" href="#moratine" data-name="Moratine" data-tag="Time you did not choose." style="--arc: linear-gradient(#9fb2be, #6e8191, #a8863b, #7e5228, #343e49)"><span class="read"></span><img src="/images/moratine-icon.png" alt="" width="56" height="56"></a>
+      </div>
+      <p class="wall-caption" id="wall-caption" aria-live="polite"><b>Ten apps,</b> <span>each with its own arc of five colors and one reading to give.</span></p>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <section class="apps" id="apps" aria-labelledby="apps-heading">
+    <h2 id="apps-heading" class="label">The apps</h2>
 
-    <!-- Hero -->
-    <section class="hero">
-      <p class="eyebrow">An independent software studio</p>
-      <h1 class="hero-headline">
-        Small, careful tools <em>for the devices</em> you already love.
-      </h1>
-      <p class="hero-lede">
-        KSQ Studios is a one-person studio in Pennsylvania building apps for iPhone, iPad, and Mac. Quiet design. Honest pricing. No subscriptions for things that should be one-time purchases.
+    <article class="app" id="minuted" style="--arc-h: linear-gradient(90deg, #378add, #7f77dd, #d85a30)">
+      <p class="no">01</p>
+      <img class="icon" src="/images/minuted-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Minuted</h3>
+        <p class="tag">Every meeting has a price tag.</p>
+        <p class="desc">A meeting cost calculator that shows what's on the line, in dollars, as it happens. Pick a roster, hit start, watch the room burn money in real time.</p>
+      </div>
+      <p class="links"><a href="https://minuted.org">minuted.org</a><a href="https://apps.apple.com/us/app/minuted/id6764897137" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="winnowed" style="--arc-h: linear-gradient(90deg, #7a9b5e, #d4b56a, #c9774a, #a03d1e, #6b1a1e)">
+      <p class="no">02</p>
+      <img class="icon" src="/images/winnowed-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Winnowed</h3>
+        <p class="tag">Keep what counts. Cut the rest.</p>
+        <p class="desc">A subscription tracker built around a quarterly review ritual. Sit with your subscriptions four times a year, see their true 5-year cost, and decide what's worth keeping.</p>
+      </div>
+      <p class="links"><a href="https://winnowed.app">winnowed.app</a><a href="https://apps.apple.com/us/app/winnowed-subscription-tracker/id6764893370" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="endured" style="--arc-h: linear-gradient(90deg, #e8e1d0, #b0a998, #605c50, #2a2926, #0a0a09)">
+      <p class="no">03</p>
+      <img class="icon" src="/images/endured-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Endured</h3>
+        <p class="tag">Hard work, honestly recorded.</p>
+        <p class="desc">A focus session recorder built around a simple contract: the record is what happened. The gradient deepens as you work, from bone through stone, slate and graphite to iron, and sessions are saved exactly as long as they were.</p>
+      </div>
+      <p class="links"><a href="https://endured.app">endured.app</a><a href="https://apps.apple.com/us/app/endured/id6766737964" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="eclipsed" style="--arc-h: linear-gradient(90deg, #3a5878, #4f5680, #6e4569, #8b3d45, #5e1418)">
+      <p class="no">04</p>
+      <img class="icon" src="/images/eclipsed-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Eclipsed</h3>
+        <p class="tag">Sleep debt, made visible.</p>
+        <p class="desc">A sleep debt tracker that reads HealthKit, computes a rolling total, and surfaces it through a five-stage gradient. The color warms with the weight you're carrying: slate when rested, crimson when you've been short for weeks.</p>
+      </div>
+      <p class="links"><a href="https://eclipsedsleep.app">eclipsedsleep.app</a><a href="https://apps.apple.com/us/app/eclipsed/id6764891875" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="vesperine" style="--arc-h: linear-gradient(90deg, #f5f1e8, #edc788, #a87838, #5a3318, #1f1108)">
+      <p class="no">05</p>
+      <img class="icon" src="/images/vesperine-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Vesperine</h3>
+        <p class="tag">Write once, at the end of the day.</p>
+        <p class="desc">A contemplative evening journal. Write once when the day has settled, and the Mirror offers a single reflection in return, generated on your device. No streaks, no scores, nothing that nudges or scolds.</p>
+      </div>
+      <p class="links"><a href="https://vesperine.app">vesperine.app</a><a href="https://apps.apple.com/us/app/vesperine/id6767848257" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="brightened" style="--arc-h: linear-gradient(90deg, #3a4148, #4e4468, #b89654, #c4832f, #d9a621)">
+      <p class="no">06</p>
+      <img class="icon" src="/images/brightened-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Brightened</h3>
+        <p class="tag">The daylight you gathered.</p>
+        <p class="desc">A daylight tracker built on the Time in Daylight your Apple Watch already records. A five-stage gradient brightens as light accumulates, from slate through dawn to radiant, and nothing ever scolds you for a quiet week.</p>
+      </div>
+      <p class="links"><a href="https://brightened.app">brightened.app</a><a href="https://apps.apple.com/us/app/brightened/id6803251051" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="reckonry" style="--arc-h: linear-gradient(90deg, #1f5f5b, #2e4e6e, #46406e, #6e3a78, #8e2358)">
+      <p class="no">07</p>
+      <img class="icon" src="/images/reckonry-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Reckonry</h3>
+        <p class="tag">Record what you reckon before you start.</p>
+        <p class="desc">An estimate keeper. Say how long you think a task will take, do the work, and see the gap between the two. A five-stage arc from teal to magenta carries the size of the miss, and there is no score, no streak, and no coaching anywhere in it.</p>
+      </div>
+      <p class="links"><a href="https://reckonry.app">reckonry.app</a><a href="https://apps.apple.com/us/app/reckonry/id6803737260" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="commuted" style="--arc-h: linear-gradient(90deg, #0e1620, #1e3040, #33546b, #3e829b, #5fbfcf)">
+      <p class="no">08</p>
+      <img class="icon" src="/images/commuted-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Commuted</h3>
+        <p class="tag">Your commute costs hours before it costs dollars.</p>
+        <p class="desc">A commute cost tracker. Tap when you leave, tap when you arrive, and see what the trip to work actually takes from you. The hours lead; the money follows. It uses the IRS standard mileage rate rather than fuel alone, and asks for no permissions at all.</p>
+      </div>
+      <p class="links"><a href="https://commuted.app">commuted.app</a><a href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="adjourned" style="--arc-h: linear-gradient(90deg, #4a90c2, #d9a441, #e58a4e, #de5845, #c7302b)">
+      <p class="no">09</p>
+      <img class="icon" src="/images/adjourned-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Adjourned</h3>
+        <p class="tag">End the meetings you should not be in.</p>
+        <p class="desc">A standing meeting review built around a monthly ritual. Every recurring meeting priced in hours and dollars, one question per card, then a decision: keep, shorten, or cut. It never cancels anything for you, and the number only falls when the meeting actually ends.</p>
+      </div>
+      <p class="links"><a href="https://adjournedapp.com">adjournedapp.com</a><a href="https://apps.apple.com/us/app/adjourned/id6806115869" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+
+    <article class="app" id="moratine" style="--arc-h: linear-gradient(90deg, #9fb2be, #6e8191, #a8863b, #7e5228, #343e49)">
+      <p class="no">10</p>
+      <img class="icon" src="/images/moratine-icon.png" alt="" width="88" height="88" loading="lazy">
+      <div class="app-text">
+        <h3>Moratine</h3>
+        <p class="tag">Time you did not choose.</p>
+        <p class="desc">A record of involuntary waiting: on hold, in line, in waiting rooms. One tap starts it and one tap ends it, from Control Center, your watch, or a widget. Say who you waited on later, or never, and the named ones add up into a ledger of who is costing you time.</p>
+      </div>
+      <p class="links"><a href="https://moratine.app">moratine.app</a><a href="https://apps.apple.com/us/app/moratine/id6808066631" rel="noopener">App Store</a></p>
+      <span class="arc-line" aria-hidden="true"></span>
+    </article>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading" class="label">About the studio</h2>
+    <div class="about-body">
+      <p class="about-lead">
+        KSQ Studios is the work of Kurt Klein, a software engineer who, like
+        most people who write code for a living, eventually wanted to make
+        something small and his own.
       </p>
-    </section>
-
-    <!-- Apps showcase -->
-    <section class="apps" aria-labelledby="apps-heading">
-      <h2 id="apps-heading" class="section-label">What we make</h2>
-
-      <div class="app-grid">
-
-        <!-- Minuted -->
-        <article class="app-card app-card--minuted">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--minuted"></div>
-            <img src="/images/minuted-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Minuted</h3>
-            <p class="app-tagline">Every meeting has a price tag.</p>
-            <p class="app-description">
-              A meeting cost calculator that shows what's on the line, in dollars, as it happens. Pick a roster, hit start, watch the room burn money in real time.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/minuted/id6764897137" rel="noopener" aria-label="Download Minuted on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://minuted.org" class="app-link">
-                <span>minuted.org</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Winnowed -->
-        <article class="app-card app-card--winnowed">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--winnowed"></div>
-            <img src="/images/winnowed-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Winnowed</h3>
-            <p class="app-tagline">Keep what counts. Cut the rest.</p>
-            <p class="app-description">
-              A subscription tracker built around a quarterly review ritual. Sit with your subscriptions four times a year, see their true 5-year cost, and decide what's worth keeping.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/winnowed-subscription-tracker/id6764893370" rel="noopener" aria-label="Download Winnowed on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://winnowed.app" class="app-link">
-                <span>winnowed.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Endured -->
-        <article class="app-card app-card--endured">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--endured"></div>
-            <img src="/images/endured-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Endured</h3>
-            <p class="app-tagline">Hard work, honestly recorded.</p>
-            <p class="app-description">
-              A focus session recorder built around a simple contract: the record is what happened. The gradient deepens as you work, from bone through stone, slate and graphite to iron, and sessions are saved exactly as long as they were.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/endured/id6766737964" rel="noopener" aria-label="Download Endured on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://endured.app" class="app-link">
-                <span>endured.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Eclipsed -->
-        <article class="app-card app-card--eclipsed">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--eclipsed"></div>
-            <img src="/images/eclipsed-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Eclipsed</h3>
-            <p class="app-tagline">Sleep debt, made visible.</p>
-            <p class="app-description">
-              A sleep debt tracker that reads HealthKit, computes a rolling total, and surfaces it through a five-stage gradient. The color warms with the weight you're carrying: slate when rested, crimson when you've been short for weeks.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/eclipsed/id6764891875" rel="noopener" aria-label="Download Eclipsed on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://eclipsedsleep.app" class="app-link">
-                <span>eclipsedsleep.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Vesperine -->
-        <article class="app-card app-card--vesperine">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--vesperine"></div>
-            <img src="/images/vesperine-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Vesperine</h3>
-            <p class="app-tagline">Write once, at the end of the day.</p>
-            <p class="app-description">
-              A contemplative evening journal. Write once when the day has settled, and the Mirror offers a single reflection in return, generated on your device. No streaks, no scores, nothing that nudges or scolds.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/vesperine/id6767848257" rel="noopener" aria-label="Download Vesperine on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://vesperine.app" class="app-link">
-                <span>vesperine.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Brightened -->
-        <article class="app-card app-card--brightened">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--brightened"></div>
-            <img src="/images/brightened-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Brightened</h3>
-            <p class="app-tagline">The daylight you gathered.</p>
-            <p class="app-description">
-              A daylight tracker built on the Time in Daylight your Apple Watch already records. A five&#x2011;stage gradient brightens as light accumulates, from slate through dawn to radiant, and nothing ever scolds you for a quiet week.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/brightened/id6803251051" rel="noopener" aria-label="Download Brightened on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://brightened.app" class="app-link">
-                <span>brightened.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Reckonry -->
-        <article class="app-card app-card--reckonry">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--reckonry"></div>
-            <img src="/images/reckonry-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Reckonry</h3>
-            <p class="app-tagline">Record what you reckon before you start.</p>
-            <p class="app-description">
-              An estimate keeper. Say how long you think a task will take, do the work, and see the gap between the two. A five&#x2011;stage arc from teal to magenta carries the size of the miss, and there is no score, no streak, and no coaching anywhere in it.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/reckonry/id6803737260" rel="noopener" aria-label="Download Reckonry on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://reckonry.app" class="app-link">
-                <span>reckonry.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Commuted -->
-        <article class="app-card app-card--commuted">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--commuted"></div>
-            <img src="/images/commuted-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Commuted</h3>
-            <p class="app-tagline">Your commute costs hours before it costs dollars.</p>
-            <p class="app-description">
-              A commute cost tracker. Tap when you leave, tap when you arrive, and see what the trip to work actually takes from you. The hours lead; the money follows. It uses the IRS standard mileage rate rather than fuel alone, and asks for no permissions at all.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/commuted/id6805281897" rel="noopener" aria-label="Download Commuted on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://commuted.app" class="app-link">
-                <span>commuted.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Adjourned -->
-        <article class="app-card app-card--adjourned">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--adjourned"></div>
-            <img src="/images/adjourned-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Adjourned</h3>
-            <p class="app-tagline">End the meetings you should not be in.</p>
-            <p class="app-description">
-              A standing meeting review built around a monthly ritual. Every recurring meeting priced in hours and dollars, one question per card, then a decision: keep, shorten, or cut. It never cancels anything for you, and the number only falls when the meeting actually ends.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/adjourned/id6806115869" rel="noopener" aria-label="Download Adjourned on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://adjournedapp.com" class="app-link">
-                <span>adjournedapp.com</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Moratine -->
-        <article class="app-card app-card--moratine">
-          <div class="app-card-art" aria-hidden="true">
-            <div class="app-card-glow app-card-glow--moratine"></div>
-            <img src="/images/moratine-icon.png" alt="" class="app-icon" width="180" height="180">
-          </div>
-
-          <div class="app-card-body">
-            <h3 class="app-name">Moratine</h3>
-            <p class="app-tagline">Time you did not choose.</p>
-            <p class="app-description">
-              A record of involuntary waiting: on hold, in line, in waiting rooms. One tap starts it and one tap ends it, from Control Center, your watch, or a widget. Say who you waited on later, or never, and the named ones add up into a ledger of who is costing you time.
-            </p>
-
-            <div class="app-actions">
-              <a href="https://apps.apple.com/us/app/moratine/id6808066631" rel="noopener" aria-label="Download Moratine on the App Store" style="display: inline-block; line-height: 0;">
-                <img src="/images/app-store-badge.svg" alt="Download on the App Store" width="160" height="53" style="display: block;">
-              </a>
-              <a href="https://moratine.app" class="app-link">
-                <span>moratine.app</span>
-                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-                  <path d="M5 3h8v8M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-
-      </div>
-    </section>
-
-    <!-- About the studio -->
-    <section class="about" aria-labelledby="about-heading">
-      <h2 id="about-heading" class="section-label">About the studio</h2>
-
-      <div class="about-prose">
-        <p>
-          KSQ Studios is the work of <span class="name">Kurt Klein</span>, a software engineer who, like most people who write code for a living, eventually wanted to make something small and his own.
-        </p>
-        <p>
-          Every app from KSQ is built around the same handful of beliefs: that good software should respect your time and attention, that costs should be visible rather than hidden, and that one&#x2011;time purchases are the right shape for tools you keep on your home screen for years.
-        </p>
-        <p>
-          Privacy isn&rsquo;t a footnote. None of our apps require an account. None of them sync your data anywhere we don&rsquo;t need it to. What lives on your device stays on your device.
-        </p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading" class="section-label">Get in touch</h2>
-
-      <ul class="contact-list">
-        <li>
-          <span class="contact-label">Email</span>
-          <a href="mailto:helloworld@ksqstudios.com" class="contact-link">helloworld@ksqstudios.com</a>
-        </li>
-        <li>
-          <span class="contact-label">GitHub</span>
-          <a href="https://github.com/ksqstudios" class="contact-link" rel="noopener">github.com/ksqstudios</a>
-        </li>
+      <ul class="beliefs">
+        <li><span>01</span>Good software should respect your time and attention.</li>
+        <li><span>02</span>Costs should be visible rather than hidden.</li>
+        <li><span>03</span>One-time purchases are the right shape for tools you keep on your home screen for years.</li>
       </ul>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-mark">
-        <span class="monogram monogram--small" aria-hidden="true">K<sup>2</sup></span>
-        <span>KSQ Studios LLC</span>
-      </div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/">Home</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/support">Support</a>
-        <a href="mailto:helloworld@ksqstudios.com">Contact</a>
-      </nav>
-      <div class="footer-meta">
-        <span>&copy; 2026 KSQ Studios LLC</span>
-        <span class="dot" aria-hidden="true">&middot;</span>
-        <span>Made in Pennsylvania</span>
-      </div>
+      <p>
+        Privacy is not a footnote. None of the apps require an account. None
+        of them sync your data anywhere they do not need to. What lives on
+        your device stays on your device.
+      </p>
     </div>
-  </footer>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="label">Get in touch</h2>
+    <p class="say">Say hello.</p>
+    <dl class="contact-list">
+      <div><dt>Email</dt><dd><a href="mailto:helloworld@ksqstudios.com">helloworld@ksqstudios.com</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/ksqstudios" rel="noopener">github.com/ksqstudios</a></dd></div>
+      <div><dt>Support</dt><dd><a href="/support">ksqstudios.com/support</a></dd></div>
+    </dl>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <span class="k2 small" aria-hidden="true">K<sup>2</sup></span>
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="mailto:helloworld@ksqstudios.com">Contact</a>
+    </nav>
+    <p>2026 KSQ Studios LLC. Made in Pennsylvania.</p>
+  </div>
+</footer>
 
 </body>
 </html>
