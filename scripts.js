@@ -1,22 +1,28 @@
-// KSQ Studios. Motion for the home page. It stores nothing and sends
-// nothing.
+// KSQ Studios. Motion and the deck for the home page. It stores nothing
+// and sends nothing.
 //
 // 1. The entrance: the headline's words rise in while the fan deck flicks
 //    open. This is the only thing that moves on its own.
 // 2. The deck follows the pointer: strips near it rise in a wave, the
-//    nearest is named underneath, and the page takes a wash of its color.
-//    Keyboard focus does the same for the focused strip.
-// 3. Choosing a strip jumps to that app and draws its colors across the
-//    top of its row.
+//    nearest prints its five stages under the deck like a paint chip, and
+//    the page takes a wash of its color. Keyboard focus does the same.
+// 3. Choosing a strip unfolds it into a card for that app, in place.
 // 4. The spectrum band slides sideways as the page scrolls.
 // 5. Each app's five-color chip fills in when its row comes into view.
+// 6. Double-click the rivet (or press it from the keyboard) and the deck
+//    riffles shut and open again.
 //
-// With reduced motion on, everything is shown in its final state and only
-// the pointer and focus responses remain.
+// With reduced motion on, everything is shown in its final state; the
+// pointer, focus and card still work, without animation.
 
 (function () {
   var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
+  var stages = {};
+  try {
+    var blob = document.getElementById('stage-data');
+    if (blob) stages = JSON.parse(blob.textContent);
+  } catch (e) { stages = {}; }
 
   // ---------- 1. Entrance ----------
 
@@ -43,7 +49,14 @@
 
   strips.forEach(function (s, i) { s.style.setProperty('--i', i); });
 
-  // Two frames so the closed state paints before anything opens.
+  function colorsOf(s) {
+    return Array.prototype.map.call(s.querySelectorAll('i'), function (i) {
+      return i.style.getPropertyValue('--c').trim();
+    });
+  }
+
+  function idOf(s) { return s.getAttribute('href').slice(1); }
+
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       root.classList.add('is-loaded');
@@ -51,35 +64,61 @@
     });
   });
 
-  // The deck answers the pointer only after it has finished opening, so the
-  // entrance is never interrupted halfway.
-  if (deck) {
-    setTimeout(function () { deck.classList.add('is-live'); }, still ? 0 : 1700);
-  }
+  if (deck) setTimeout(function () { deck.classList.add('is-live'); }, still ? 0 : 1700);
 
-  // ---------- 2. Following the pointer ----------
+  // ---------- 2. Following the pointer, and the printed chip ----------
 
   var current = null;
 
-  function name(s) {
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function stageList(s, listClass) {
+    var data = stages[idOf(s)];
+    var cols = colorsOf(s);
+    var ol = el('ol', listClass);
+    if (!data) return ol;
+    data.stages.forEach(function (st, k) {
+      var li = el('li');
+      var sw = el('span', 'sw');
+      sw.style.setProperty('--c', cols[k]);
+      li.appendChild(sw);
+      li.appendChild(el('span', 'nm', st[0]));
+      if (st[1]) li.appendChild(el('span', 'th', st[1]));
+      ol.appendChild(li);
+    });
+    return ol;
+  }
+
+  function print(s) {
     if (!caption) return;
     if (!s) { caption.innerHTML = resting; return; }
     caption.innerHTML = '';
-    var b = document.createElement('b');
-    b.textContent = s.dataset.name + '.';
-    caption.appendChild(b);
-    caption.appendChild(document.createTextNode(' ' + s.dataset.tag));
+    var head = el('p', 'head');
+    head.appendChild(el('b', null, s.dataset.name + '.'));
+    var data = stages[idOf(s)];
+    head.appendChild(document.createTextNode(' ' + (data ? data.measure : s.dataset.tag)));
+    caption.appendChild(head);
+    caption.appendChild(stageList(s, 'printed'));
   }
 
   function tint(s) {
-    var c = s ? s.querySelectorAll('i')[2].style.getPropertyValue('--c') : '#ffffff';
-    root.style.setProperty('--tint', c);
+    if (s) root.style.setProperty('--tint', colorsOf(s)[2]);
+    else root.style.removeProperty('--tint');
+  }
+
+  function spreadDeg() {
+    return parseFloat(getComputedStyle(deck).getPropertyValue('--spread')) || 9;
   }
 
   // Lift each strip by how close its angle is to `angle`, in a bell curve
   // about two strips wide. Pass null to settle the whole deck.
   function wave(angle) {
-    var spread = parseFloat(getComputedStyle(deck).getPropertyValue('--spread')) || 9;
+    var spread = spreadDeg();
     var nearest = null, best = Infinity;
     strips.forEach(function (s, i) {
       var a = (i - 4.5) * spread;
@@ -92,7 +131,7 @@
     if (nearest !== current) {
       strips.forEach(function (s) { s.classList.toggle('is-on', s === nearest); });
       deck.classList.toggle('is-pointing', !!nearest);
-      name(nearest);
+      print(nearest);
       tint(nearest);
       current = nearest;
     }
@@ -104,9 +143,87 @@
     var cx = rivet.left + rivet.width / 2;
     var cy = rivet.top + rivet.height / 2;
     var dx = e.clientX - cx, dy = e.clientY - cy;
-    // Ignore the pointer below the rivet or well outside the fan.
     if (dy > 10 || Math.hypot(dx, dy) > r.height * 1.05) return null;
     return Math.atan2(dx, -dy) * 180 / Math.PI;
+  }
+
+  // ---------- 3. The unfolded card ----------
+
+  var card = document.getElementById('card');
+  var opener = null;
+
+  function fill(s) {
+    var id = idOf(s);
+    var row = document.getElementById(id);
+    var cols = colorsOf(s);
+    cols.forEach(function (c, k) { card.style.setProperty('--s' + (k + 1), c); });
+    document.getElementById('card-shot').src = '/images/screens/' + id + '.jpg';
+    document.getElementById('card-shot').alt = s.dataset.name + ' on iPhone';
+    document.getElementById('card-name').textContent = s.dataset.name;
+    document.getElementById('card-tag').textContent = s.dataset.tag;
+    document.getElementById('card-desc').textContent = row ? row.querySelector('.desc').textContent : '';
+    var data = stages[id];
+    document.getElementById('card-measure').textContent = data ? data.measure : '';
+    var old = document.getElementById('card-stages');
+    var list = stageList(s, 'stages');
+    list.id = 'card-stages';
+    old.replaceWith(list);
+    var links = document.getElementById('card-links');
+    links.innerHTML = row ? row.querySelector('.links').innerHTML : '';
+  }
+
+  function openCard(s) {
+    if (!card || typeof card.showModal !== 'function') return false;
+    opener = s;
+    fill(s);
+    var show = function () { card.showModal(); };
+    if (!still && document.startViewTransition) {
+      s.style.viewTransitionName = 'unfold';
+      var t = document.startViewTransition(function () {
+        s.style.viewTransitionName = '';
+        card.style.viewTransitionName = 'unfold';
+        show();
+      });
+      t.finished.then(function () { card.style.viewTransitionName = ''; });
+    } else {
+      show();
+    }
+    return true;
+  }
+
+  function closeCard() {
+    if (!card || !card.open) return;
+    var done = function () { card.close(); };
+    if (!still && document.startViewTransition && opener) {
+      card.style.viewTransitionName = 'unfold';
+      var t = document.startViewTransition(function () {
+        card.style.viewTransitionName = '';
+        opener.style.viewTransitionName = 'unfold';
+        done();
+      });
+      t.finished.then(function () { if (opener) opener.style.viewTransitionName = ''; });
+    } else {
+      done();
+    }
+  }
+
+  if (card) {
+    document.getElementById('card-close').addEventListener('click', closeCard);
+    // A click on the backdrop lands on the dialog element itself.
+    card.addEventListener('click', function (e) { if (e.target === card) closeCard(); });
+    card.addEventListener('cancel', function (e) { e.preventDefault(); closeCard(); });
+    card.addEventListener('close', function () { if (opener) opener.focus(); });
+  }
+
+  // ---------- 6. Riffle ----------
+
+  function riffle() {
+    if (!deck || still) return;
+    deck.classList.remove('is-live');
+    wave(null);
+    deck.classList.remove('is-open');
+    setTimeout(function () { deck.classList.add('is-open'); }, 650);
+    setTimeout(function () { deck.classList.add('is-live'); }, 650 + 1700);
   }
 
   if (deck) {
@@ -118,24 +235,20 @@
     wrap.addEventListener('pointerleave', function () { wave(null); });
 
     strips.forEach(function (s, i) {
-      s.addEventListener('focus', function () {
-        var spread = parseFloat(getComputedStyle(deck).getPropertyValue('--spread')) || 9;
-        wave((i - 4.5) * spread);
-      });
+      s.addEventListener('focus', function () { wave((i - 4.5) * spreadDeg()); });
       s.addEventListener('blur', function () { wave(null); });
-
-      // ---------- 3. Jumping to an app ----------
-      s.addEventListener('click', function () {
-        var target = document.querySelector(s.getAttribute('href'));
-        if (!target) return;
-        target.classList.remove('is-arrived');
-        setTimeout(function () {
-          void target.offsetWidth;
-          target.classList.add('is-arrived');
-          target.classList.add('is-seen');
-        }, still ? 0 : 650);
+      s.addEventListener('click', function (e) {
+        if (openCard(s)) e.preventDefault();
       });
     });
+
+    var rivet = document.getElementById('rivet');
+    if (rivet) {
+      rivet.addEventListener('dblclick', riffle);
+      rivet.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); riffle(); }
+      });
+    }
   }
 
   // ---------- 4. Spectrum ----------
@@ -143,12 +256,12 @@
   var track = document.getElementById('spectrum');
   if (track && !still) {
     var ticking = false;
-    function slide() {
+    var slide = function () {
       var half = track.scrollWidth / 2;
       var x = -((window.scrollY * 0.6) % half);
       track.style.setProperty('--x', x.toFixed(1) + 'px');
       ticking = false;
-    }
+    };
     window.addEventListener('scroll', function () {
       if (!ticking) { ticking = true; requestAnimationFrame(slide); }
     }, { passive: true });

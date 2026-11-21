@@ -14,7 +14,8 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ksqstudios.com/og-image.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1813" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://ksqstudios.com">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" href="/favicon.png">
@@ -57,9 +58,12 @@
       <h1 id="headline">Ten small apps, each keeping one honest record.</h1>
       <p class="lede">
         KSQ Studios is a one-person studio in Berwyn, Pennsylvania, building
-        apps for iPhone, iPad, and Mac. Every app reports its one reading
-        through five colors. Here they are, bound together like a fan deck.
+        apps for iPhone, iPad, and Mac. Each app has a palette of five
+        colors, and in eight of them the color is the reading. Here they are,
+        bound together like a fan deck.
       </p>
+      <!-- Update by hand with each release. -->
+      <p class="latest">Most recent release: <a href="https://brightened.app">Brightened 1.2</a>, November 2026.</p>
     </div>
 
     <!-- The fan deck. Each strip is one app's five-stage palette, from its
@@ -78,9 +82,9 @@
         <a class="strip" href="#commuted" data-name="Commuted" data-tag="Your commute costs hours before it costs dollars."><i style="--c:#5fbfcf"></i><i style="--c:#3e829b"></i><i style="--c:#33546b"></i><i style="--c:#1e3040"></i><i style="--c:#0e1620"></i><b>Commuted</b></a>
         <a class="strip" href="#adjourned" data-name="Adjourned" data-tag="End the meetings you should not be in."><i style="--c:#4a90c2"></i><i style="--c:#d9a441"></i><i style="--c:#e58a4e"></i><i style="--c:#de5845"></i><i style="--c:#c7302b"></i><b>Adjourned</b></a>
         <a class="strip" href="#moratine" data-name="Moratine" data-tag="Time you did not choose."><i style="--c:#9fb2be"></i><i style="--c:#6e8191"></i><i style="--c:#a8863b"></i><i style="--c:#7e5228"></i><i style="--c:#343e49"></i><b>Moratine</b></a>
-        <span class="rivet" aria-hidden="true"></span>
+        <button class="rivet" type="button" id="rivet" aria-label="Riffle the deck" title="Riffle the deck"></button>
       </div>
-      <p class="deck-caption" id="deck-caption" aria-live="polite">Ten palettes, one studio.</p>
+      <div class="deck-caption" id="deck-caption" aria-live="polite"><p class="rest">Ten palettes, one studio.</p></div>
     </div>
   </section>
   </div>
@@ -231,6 +235,279 @@
       <div><dt>Support</dt><dd><a href="/support">ksqstudios.com/support</a></dd></div>
     </dl>
   </section>
+
+  <!-- A strip, unfolded: opened from the deck in place of jumping down the
+       page. Filled from the app's row in the list and the stage data below. -->
+  <dialog class="card" id="card" aria-labelledby="card-name">
+    <div class="card-inner">
+      <img class="card-shot" id="card-shot" src="" alt="" width="600" height="800">
+      <div class="card-text">
+        <h2 id="card-name"></h2>
+        <p class="tag" id="card-tag"></p>
+        <p class="desc" id="card-desc"></p>
+        <p class="card-measure" id="card-measure"></p>
+        <ol class="stages" id="card-stages"></ol>
+        <p class="links" id="card-links"></p>
+      </div>
+      <button class="card-close" type="button" id="card-close">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Stage names and thresholds, taken from each app's own palette code. -->
+  <script type="application/json" id="stage-data">
+{
+ "minuted": {
+  "measure": "What the meeting has cost so far",
+  "stages": [
+   [
+    "Midnight",
+    "Under $50"
+   ],
+   [
+    "Indigo",
+    "$50 to $250"
+   ],
+   [
+    "Burgundy",
+    "$250 to $750"
+   ],
+   [
+    "Umber",
+    "$750 to $2,000"
+   ],
+   [
+    "Crimson",
+    "$2,000 and up"
+   ]
+  ]
+ },
+ "winnowed": {
+  "measure": "One subscription's five-year cost",
+  "stages": [
+   [
+    "Sage",
+    "Under $250"
+   ],
+   [
+    "Wheat",
+    "$250 to $750"
+   ],
+   [
+    "Terracotta",
+    "$750 to $2,000"
+   ],
+   [
+    "Rust",
+    "$2,000 to $6,000"
+   ],
+   [
+    "Burgundy",
+    "$6,000 and up"
+   ]
+  ]
+ },
+ "endured": {
+  "measure": "How long the session has run",
+  "stages": [
+   [
+    "Bone",
+    "0 to 10 min"
+   ],
+   [
+    "Stone",
+    "10 to 25 min"
+   ],
+   [
+    "Slate",
+    "25 to 50 min"
+   ],
+   [
+    "Graphite",
+    "50 to 90 min"
+   ],
+   [
+    "Iron",
+    "90 min and up"
+   ]
+  ]
+ },
+ "eclipsed": {
+  "measure": "Sleep debt over the last 14 nights",
+  "stages": [
+   [
+    "Slate",
+    "Under 2 hours"
+   ],
+   [
+    "Mist",
+    "2 to 5 hours"
+   ],
+   [
+    "Plum",
+    "5 to 10 hours"
+   ],
+   [
+    "Rust",
+    "10 to 20 hours"
+   ],
+   [
+    "Crimson",
+    "20 hours and up"
+   ]
+  ]
+ },
+ "vesperine": {
+  "measure": "Ivory, honey, amber, bronze, coal: the light of a single candle. There's nothing to measure in an evening's writing.",
+  "stages": [
+   [
+    "Ivory",
+    ""
+   ],
+   [
+    "Honey",
+    ""
+   ],
+   [
+    "Amber",
+    ""
+   ],
+   [
+    "Bronze",
+    ""
+   ],
+   [
+    "Coal",
+    ""
+   ]
+  ]
+ },
+ "brightened": {
+  "measure": "Daylight this week, against your daily goal",
+  "stages": [
+   [
+    "Slate",
+    "Under 25% of goal"
+   ],
+   [
+    "Dusk",
+    "25% to 50%"
+   ],
+   [
+    "Dawn",
+    "50% to 75%"
+   ],
+   [
+    "Amber",
+    "75% to 100%"
+   ],
+   [
+    "Radiant",
+    "At or above goal"
+   ]
+  ]
+ },
+ "reckonry": {
+  "measure": "How far the work ran from the estimate",
+  "stages": [
+   [
+    "Teal",
+    "Within 10%"
+   ],
+   [
+    "Petrol",
+    "10% to 25%"
+   ],
+   [
+    "Indigo",
+    "25% to 50%"
+   ],
+   [
+    "Violet",
+    "50% to 100%"
+   ],
+   [
+    "Magenta",
+    "Beyond 100%"
+   ]
+  ]
+ },
+ "commuted": {
+  "measure": "Asphalt to signal, the colors of the road at first light. Commuted's total only climbs, so its color stays put.",
+  "stages": [
+   [
+    "Signal",
+    ""
+   ],
+   [
+    "Channel",
+    ""
+   ],
+   [
+    "Steel",
+    ""
+   ],
+   [
+    "Slate",
+    ""
+   ],
+   [
+    "Asphalt",
+    ""
+   ]
+  ]
+ },
+ "adjourned": {
+  "measure": "Standing meetings, in hours a week",
+  "stages": [
+   [
+    "Sky",
+    "Under 2 hr"
+   ],
+   [
+    "Golden",
+    "2 to 5 hr"
+   ],
+   [
+    "Apricot",
+    "5 to 10 hr"
+   ],
+   [
+    "Coral",
+    "10 to 20 hr"
+   ],
+   [
+    "Vermilion",
+    "20 hr and up"
+   ]
+  ]
+ },
+ "moratine": {
+  "measure": "Time spent waiting this month",
+  "stages": [
+   [
+    "Mist",
+    "Under 1 hour"
+   ],
+   [
+    "Pewter",
+    "1 to 3 hours"
+   ],
+   [
+    "Ochre",
+    "3 to 8 hours"
+   ],
+   [
+    "Umber",
+    "8 to 20 hours"
+   ],
+   [
+    "Leaden",
+    "20 hours and up"
+   ]
+  ]
+ }
+}
+  </script>
 
 </main>
 
