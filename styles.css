@@ -1,308 +1,480 @@
 /*
   ksqstudios.com
 
-  The studio after hours. A dark room so the ten apps' colors can glow:
-  each app has an arc of five colors that reports its one reading, and the
-  home page stands the ten arcs side by side like instruments on a bench.
-  Geist for type, Geist Mono for numbers and labels, and K squared for a
-  mark.
+  The fan deck. Every KSQ app reports its one reading through five colors,
+  so the studio page binds the ten palettes together like a paint maker's
+  fan deck, riveted at the bottom. The page itself stays white and quiet so
+  the colors read true, the way a printed swatch book does. Fraunces for
+  everything, and K squared in the studio's brown for a mark.
 
   No analytics. The privacy policy says the site collects nothing, so keep
   it that way.
 */
 
 :root {
-  --room: #111110;
-  --room-2: #1a1a18;
-  --card: #1f1f1c;
-  --ink: #ece8e1;
-  --soft: #a39e95;
-  --mute: #6f6b64;
-  --hair: rgba(236, 232, 225, 0.12);
-  --warm: #d9a441;
+  --paper: #ffffff;
+  --ink: #1d1a16;
+  --soft: #5e584f;
+  --rule: #e7e3dc;
+  --brown: #6b5840;
+  --cream: #f8f5f0;
 
-  --sans: Geist, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --serif: Fraunces, "Iowan Old Style", Georgia, serif;
 
-  --page: 74rem;
+  --page: 72rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; background: var(--room); scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; background: var(--paper); scroll-behavior: smooth; }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
   margin: 0;
-  background: var(--room);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--sans);
-  font-size: 1.08rem;
-  line-height: 1.6;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-size: 1.1rem;
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
 }
 
 img { max-width: 100%; height: auto; display: block; }
 
-a { color: inherit; text-decoration-color: var(--mute); text-underline-offset: 0.22em; }
-a:hover { text-decoration-color: var(--ink); }
+a { color: inherit; text-decoration-color: #c9c2b6; text-decoration-thickness: 1px; text-underline-offset: 0.24em; }
+a:hover { text-decoration-color: var(--brown); }
 
-:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--brown); outline-offset: 3px; border-radius: 3px; }
 
-h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-weight: 500; text-wrap: balance; }
 
 p { margin: 0 0 1rem; }
 
-.label, .eyebrow {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--soft);
-}
-
-/* K squared */
-.k2 { font-family: var(--mono); font-weight: 500; font-size: 1.15em; letter-spacing: -0.02em; }
-.k2 sup { font-size: 0.55em; margin-left: 0.04em; vertical-align: 0.9em; line-height: 0; color: var(--warm); }
-
 /* ---------- Bar ---------- */
 
-.bar { position: sticky; top: 0; z-index: 10; background: rgba(17, 17, 16, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; }
+.bar {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 1.4rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 
-.bar-inner { max-width: var(--page); margin: 0 auto; padding: 1.1rem var(--gutter); display: flex; align-items: center; justify-content: space-between; }
+.mark {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
 
-.mark { display: flex; align-items: baseline; gap: 0.7rem; font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; }
+.k2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 0.5rem;
+  background: var(--brown);
+  color: var(--cream);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.k2 sup { font-size: 0.55em; line-height: 1; position: relative; top: -0.45em; margin-left: 0.04em; }
+.k2.small { width: 1.7rem; height: 1.7rem; font-size: 0.85rem; border-radius: 0.42rem; }
 
-.bar nav { display: flex; gap: 1.6rem; font-size: 0.98rem; color: var(--soft); }
-.bar nav a { text-decoration: none; }
+.bar nav { display: flex; gap: clamp(1rem, 3vw, 2rem); }
+.bar nav a { text-decoration: none; color: var(--soft); }
 .bar nav a:hover { color: var(--ink); }
 
 /* ---------- Hero ---------- */
 
-.hero { max-width: var(--page); margin: 0 auto; padding: clamp(3rem, 8vw, 6rem) var(--gutter) clamp(3rem, 6vw, 4.5rem); }
+/* The page takes a pale wash of whichever palette is pulled out of the
+   deck, so it answers the strip under your pointer. */
+html { --tint: #ffffff; }
+body {
+  background: color-mix(in oklab, var(--tint) 10%, #ffffff);
+  transition: background-color 0.7s ease;
+}
 
-.eyebrow { margin-bottom: 1.5rem; }
+.hero {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4.5rem) var(--gutter) clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
 
 .hero h1 {
-  max-width: 15ch;
-  font-weight: 500;
-  font-size: clamp(3rem, 7.4vw, 6.4rem);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.6rem, 5.6vw, 4.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 380;
+  font-variation-settings: "SOFT" 60;
+  max-width: 13ch;
 }
 
-.lede { margin-top: 1.75rem; max-width: 34rem; font-size: 1.2rem; color: var(--soft); }
+/* Page load: the headline's words rise in while the deck fans open. This is
+   the page's one entrance; nothing else animates in on its own. */
+.hero h1 .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.45em);
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--n) * 55ms);
+}
+.is-loaded .hero h1 .w { opacity: 1; transform: none; }
 
-/* The wall of arcs */
-
-.wall { margin-top: clamp(3rem, 7vw, 5rem); }
-
-.pipes {
-  --w: clamp(1.5rem, 4.4vw, 3.6rem);
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  gap: clamp(0.4rem, 1.4vw, 1.1rem);
-  align-items: end;
+.lede {
+  margin-top: 1.6rem;
+  max-width: 34rem;
+  color: var(--soft);
+  font-size: 1.18rem;
 }
 
-.pipe {
+/* The deck. Strips pivot on a rivet near their foot. --open goes from 0
+   (stacked) to 1 (fanned) once on load; each strip's angle is its share of
+   the spread. */
+
+.deck-wrap { display: grid; justify-items: center; gap: 1.2rem; touch-action: pan-y; }
+
+.deck {
+  --w: 3.6rem;
+  --h: 24rem;
+  --spread: 9deg;
+  --open: 1;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
-  text-decoration: none;
-  transition: opacity 0.35s ease;
+  width: 100%;
+  max-width: 34rem;
+  height: calc(var(--h) + 2.5rem);
 }
 
-.pipe::before {
-  content: "";
-  display: block;
-  width: var(--w);
-  height: clamp(13rem, 34vw, 24rem);
-  border-radius: 999px;
-  background: var(--arc);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  transform-origin: bottom;
-  transform: scaleY(0);
-  transition: transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
-  transition-delay: var(--delay, 0s);
-}
+/* With scripts on, the deck starts closed and the script opens it. */
+.js .deck { --open: 0; }
+.js .deck.is-open { --open: 1; }
 
-.wall.is-up .pipe::before { transform: scaleY(1); }
-
-/* The reading: a ring that sits where this app's arc is right now. */
-.read {
+.strip {
+  --i: 0;
   position: absolute;
-  left: 50%;
-  top: calc(var(--at, 0.5) * clamp(13rem, 34vw, 24rem));
-  width: calc(var(--w) + 10px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12), 0 0 20px rgba(255, 255, 255, 0.35);
-  transition: top 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s ease;
-  transition-delay: 0s, calc(var(--delay, 0s) + 1s);
+  left: calc(50% - var(--w) / 2);
+  bottom: 1.2rem;
+  width: var(--w);
+  height: var(--h);
+  display: grid;
+  grid-template-rows: repeat(5, 1fr) 4.6rem;
+  border-radius: 0.45rem;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 0 0 1px rgba(29, 26, 22, 0.08), 0 6px 18px -10px rgba(29, 26, 22, 0.35);
+  transform-origin: 50% calc(100% - 1.6rem);
+  transform:
+    rotate(calc((var(--i) - 4.5) * var(--spread) * var(--open)))
+    translateY(calc(var(--lift, 0rem) + (1 - var(--open)) * 3rem));
+  opacity: calc(0.2 + var(--open) * 0.8);
+  /* The opening overshoots a little, like a deck flicked open. */
+  transition:
+    transform 1.1s cubic-bezier(0.3, 1.45, 0.45, 1) calc(0.15s + var(--i) * 45ms),
+    opacity 0.5s ease calc(0.15s + var(--i) * 45ms);
+  text-decoration: none;
+  z-index: var(--z, 1);
 }
 
-.wall.is-up .read { transform: translate(-50%, -50%) scale(1); }
+.strip i { display: block; background: var(--c); }
 
-.pipe img { width: calc(var(--w) + 4px); height: auto; border-radius: 22%; }
+/* The strip's name is for screen readers; sighted readers get it in the
+   caption under the deck when they point at a strip. */
+.strip b {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
 
-.wall.is-pointing .pipe { opacity: 0.35; }
-.wall.is-pointing .pipe.is-on { opacity: 1; }
-.pipe.is-on::before { filter: brightness(1.15) saturate(1.1); }
+/* Once open, the deck follows the pointer: strips near it rise out of the
+   deck in a soft wave, the nearest highest, and that one is named below. */
+.deck.is-live .strip { transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease; }
+.deck.is-pointing .strip:not(.is-on) { filter: saturate(0.7) brightness(1.03); }
+.strip.is-on { --z: 20; }
 
-.wall-caption { margin-top: 1.5rem; min-height: 1.6em; font-size: 1.1rem; color: var(--soft); text-align: center; }
-.wall-caption b { color: var(--ink); font-weight: 600; }
+.rivet {
+  position: absolute;
+  left: calc(50% - 0.55rem);
+  bottom: calc(1.2rem + 1.6rem - 0.55rem);
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9c8668, var(--brown) 60%, #4a3c2a);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  z-index: 30;
+  pointer-events: none;
+}
 
-/* ---------- The apps ---------- */
+.deck-caption {
+  margin: 0;
+  min-height: 1.7em;
+  text-align: center;
+  color: var(--soft);
+}
+.deck-caption b { color: var(--ink); font-weight: 600; }
 
-.apps, .about, .contact { max-width: var(--page); margin: 0 auto; padding: clamp(4rem, 9vw, 7rem) var(--gutter); }
+/* ---------- Spectrum ---------- */
 
-.apps > .label, .about > .label, .contact > .label { margin-bottom: 2rem; }
+/* All fifty colors in a single band that slides sideways with the scroll,
+   running between the deck and the list it opens onto. */
+.spectrum {
+  overflow: hidden;
+  height: clamp(3.2rem, 6vw, 4.6rem);
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+.spectrum-track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  transform: translate3d(var(--x, 0px), 0, 0);
+  will-change: transform;
+}
+.spectrum-track i { display: block; width: clamp(2.6rem, 4.5vw, 4rem); background: var(--c); }
+
+@media (prefers-reduced-motion: reduce) {
+  .strip, .deck.is-live .strip, .hero h1 .w, .chip i, body { transition: none !important; }
+  .hero h1 .w { opacity: 1; transform: none; }
+}
+
+/* ---------- Apps ---------- */
+
+.apps, .about, .contact {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.apps > h2, .about > h2, .contact > h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.015em;
+  font-weight: 420;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--ink);
+}
 
 .app {
-  position: relative;
   display: grid;
-  grid-template-columns: 3rem 5.5rem minmax(0, 1fr) 13rem;
-  gap: 0.5rem 1.75rem;
+  grid-template-columns: 4.5rem minmax(0, 40rem) 1fr;
+  gap: 1.6rem;
   align-items: start;
-  padding: 2.25rem 0 2.5rem;
-  border-top: 1px solid var(--hair);
-  scroll-margin-top: 5rem;
+  padding: 2.2rem 0;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 1rem;
 }
 
-.app .no { font-family: var(--mono); font-size: 0.9rem; color: var(--mute); padding-top: 0.55rem; }
-
-.app .icon { width: 5.5rem; border-radius: 22%; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
-
-.app h3 { font-weight: 600; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; letter-spacing: -0.035em; }
-.app .tag { margin: 0.6rem 0 0.9rem; font-size: 1.2rem; }
-.app .desc { max-width: 40rem; color: var(--soft); font-size: 1rem; margin: 0; }
-
-.links { display: grid; gap: 0.5rem; margin: 0.4rem 0 0; font-family: var(--mono); font-size: 0.9rem; }
-.links a { display: flex; justify-content: space-between; padding: 0.55rem 0.8rem; border-radius: 10px; background: var(--room-2); box-shadow: inset 0 0 0 1px var(--hair); text-decoration: none; }
-.links a::after { content: "\2197"; color: var(--soft); }
-.links a:hover { background: var(--card); }
-
-/* Each entry's arc, drawn in when the entry scrolls into view. */
-.arc-line {
+/* Jumping to an app from the deck draws its five colors across the top of
+   its row, so you can see where you landed. */
+.app { position: relative; }
+.app::before {
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
   top: -1px;
   height: 3px;
-  border-radius: 3px;
-  background: var(--arc-h);
+  background: linear-gradient(90deg, var(--s1), var(--s2), var(--s3), var(--s4), var(--s5));
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+}
+.app.is-arrived::before { animation: arrive 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+@keyframes arrive {
+  0% { transform: scaleX(0); opacity: 1; }
+  35% { transform: scaleX(1); opacity: 1; }
+  80% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
 }
 
-.app.is-seen .arc-line { transform: scaleX(1); }
+.icon { width: 4.5rem; height: 4.5rem; border-radius: 22%; box-shadow: 0 0 0 1px rgba(29, 26, 22, 0.06); }
+
+.app h3 { font-size: 1.6rem; font-weight: 560; letter-spacing: -0.01em; line-height: 1.15; }
+.tag { margin: 0.25rem 0 0.7rem; font-style: italic; color: var(--brown); font-size: 1.12rem; }
+.desc { color: var(--soft); max-width: 38rem; }
+.links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; margin: 0; }
+
+/* The app's five colors as a single chip, the one spot of color in the row. */
+.chip {
+  justify-self: end;
+  display: grid;
+  grid-template-columns: repeat(5, 1.7rem);
+  height: 4.5rem;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(29, 26, 22, 0.08);
+}
+/* When a row scrolls into view, its five stages fill in from the first to
+   the last, the way each app's reading climbs. */
+.chip i { transform: scaleY(0); transform-origin: bottom; transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.chip i:nth-child(2) { transition-delay: 0.08s; }
+.chip i:nth-child(3) { transition-delay: 0.16s; }
+.chip i:nth-child(4) { transition-delay: 0.24s; }
+.chip i:nth-child(5) { transition-delay: 0.32s; }
+.app.is-seen .chip i { transform: none; }
+
+.chip i:nth-child(1) { background: var(--s1); }
+.chip i:nth-child(2) { background: var(--s2); }
+.chip i:nth-child(3) { background: var(--s3); }
+.chip i:nth-child(4) { background: var(--s4); }
+.chip i:nth-child(5) { background: var(--s5); }
 
 /* ---------- About ---------- */
 
-.about { border-top: 1px solid var(--hair); }
-.about-body { max-width: 46rem; }
-.about-lead { font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 400; line-height: 1.3; letter-spacing: -0.02em; margin-bottom: 2.5rem; }
+.about { margin-top: clamp(4rem, 9vw, 7rem); }
 
-.beliefs { list-style: none; margin: 0 0 2.5rem; padding: 0; }
-.beliefs li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); padding: 1rem 0; border-top: 1px solid var(--hair); font-size: 1.2rem; }
-.beliefs li:last-child { border-bottom: 1px solid var(--hair); }
-.beliefs span { font-family: var(--mono); font-size: 0.9rem; color: var(--warm); padding-top: 0.25rem; }
+.about-body { max-width: 40rem; padding-top: 2rem; }
+.about-lead { font-size: 1.4rem; line-height: 1.45; font-weight: 380; }
 
-.about-body > p:last-child { color: var(--soft); }
+.beliefs { list-style: none; padding: 0; margin: 1.8rem 0; }
+.beliefs li {
+  padding: 0.85rem 0 0.85rem 1.4rem;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.beliefs li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.45rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--brown);
+}
+.beliefs li:last-child { border-bottom: 1px solid var(--rule); }
 
 /* ---------- Contact ---------- */
 
-.contact { border-top: 1px solid var(--hair); }
-.say { font-weight: 500; font-size: clamp(3rem, 8vw, 6rem); line-height: 1; letter-spacing: -0.045em; margin-bottom: 2.5rem; }
+.contact { margin-top: clamp(4rem, 9vw, 7rem); }
 
-.contact-list { margin: 0; max-width: 40rem; }
-.contact-list div { display: grid; grid-template-columns: 7rem minmax(0, 1fr); padding: 0.9rem 0; border-top: 1px solid var(--hair); }
-.contact-list dt { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); padding-top: 0.15rem; }
-.contact-list dd { margin: 0; font-size: 1.15rem; }
+.contact-list { margin: 0; padding-top: 1rem; }
+.contact-list div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.contact-list dt { color: var(--soft); }
+.contact-list dd { margin: 0; }
+
+/* ---------- Privacy and support ---------- */
+
+.doc {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 4.5rem) var(--gutter) 0;
+}
+
+.doc-title {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  font-weight: 380;
+  font-variation-settings: "SOFT" 60;
+}
+
+.doc-meta { margin-top: 1rem; color: var(--soft); font-size: 1.12rem; }
+
+.doc-body { margin-top: 2.6rem; }
+.doc-body h2 {
+  font-size: 1.45rem;
+  font-weight: 520;
+  letter-spacing: -0.01em;
+  margin: 2.4rem 0 0.6rem;
+}
+.doc-body p, .doc-body li { color: #3a352f; }
+.doc-body strong { font-weight: 600; color: var(--ink); }
+
+.signoff { margin-top: 2.6rem; }
+.signoff em { color: var(--soft); }
+
+.link-list { list-style: none; padding: 0; margin: 1rem 0 0; border-top: 1px solid var(--rule); }
+.link-list li { border-bottom: 1px solid var(--rule); }
+.link-list a {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  padding: 0.75rem 0;
+  text-decoration: none;
+}
+.link-list a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--brown); }
+.link-url { color: var(--soft); }
+
+/* Support: one row per app, its five colors filling in at the right. */
+.help-list { margin-top: 2.4rem; border-top: 1px solid var(--ink); }
+
+.help {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.help .icon { width: 3.5rem; height: 3.5rem; }
+.help-text { display: grid; gap: 0.15rem; }
+.help-name { font-size: 1.25rem; font-weight: 560; }
+.help-desc { color: var(--soft); line-height: 1.55; }
+.help-url { color: var(--brown); font-size: 0.98rem; }
+.help:hover .help-name { text-decoration: underline; text-decoration-color: var(--brown); text-underline-offset: 0.2em; }
+.help .chip { height: 3.5rem; grid-template-columns: repeat(5, 1.1rem); }
+.help .chip i { transform: none; }
 
 /* ---------- Footer ---------- */
 
-.foot { border-top: 1px solid var(--hair); }
-.foot-inner { max-width: var(--page); margin: 0 auto; padding: 2rem var(--gutter) 3rem; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.75rem 2rem; font-size: 0.95rem; color: var(--soft); }
-.foot nav { display: flex; gap: 1.5rem; }
-.foot nav a { text-decoration: none; }
-.foot nav a:hover { color: var(--ink); }
+.foot {
+  max-width: var(--page);
+  margin: clamp(4rem, 9vw, 7rem) auto 0;
+  padding: 2rem var(--gutter) 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  color: var(--soft);
+  font-size: 0.95rem;
+}
+.foot nav { display: flex; gap: 1.4rem; }
 .foot p { margin: 0 0 0 auto; }
 
-/* ---------- Document pages: privacy, support ---------- */
+/* ---------- Narrow screens ---------- */
 
-.doc { max-width: 46rem; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) var(--gutter) clamp(4rem, 8vw, 6rem); }
-.doc .eyebrow { margin-bottom: 1rem; }
-.doc-title { font-weight: 500; font-size: clamp(2.8rem, 7vw, 4.6rem); line-height: 1; letter-spacing: -0.045em; }
-.doc-title em { font-style: normal; color: var(--warm); }
-.doc-meta { margin-top: 1.25rem; color: var(--soft); font-size: 1.15rem; }
-.doc-body { margin-top: 2.5rem; }
-.doc-body h2 { font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; margin: 2.5rem 0 0.6rem; }
-.doc-body p, .doc-body li { color: #cfcac2; }
-.doc-body ul { padding-left: 1.2rem; }
-.doc-body li { margin-bottom: 0.4rem; }
-.doc-body a { text-decoration-color: var(--warm); }
-
-.support-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
-
-.support-card {
-  display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1fr);
-  gap: 1rem;
-  align-items: start;
-  padding: 1.1rem;
-  border-radius: 16px;
-  background: var(--room-2);
-  box-shadow: inset 0 0 0 1px var(--hair);
-  text-decoration: none;
-  transition: background 0.2s ease;
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero h1 { max-width: 15ch; }
+  .deck { --w: 2.7rem; --h: 17rem; --spread: 8.5deg; max-width: 24rem; }
+  .strip { grid-template-rows: repeat(5, 1fr) 3.6rem; }
 }
 
-.support-card:hover { background: var(--card); }
-.support-card-art { position: relative; }
-.support-card-glow { display: none; }
-.support-icon { width: 3.5rem; border-radius: 22%; }
-.support-name { font-size: 1.1rem !important; font-weight: 600; margin: 0 0 0.3rem !important; letter-spacing: -0.01em; }
-.support-description { font-size: 0.95rem; color: var(--soft) !important; margin: 0 0 0.5rem; }
-.support-link { font-family: var(--mono); font-size: 0.82rem; color: var(--soft); display: inline-flex; gap: 0.3rem; align-items: center; }
-
-.link-list { list-style: none; padding: 0 !important; }
-.link-list li { padding: 0.55rem 0; border-top: 1px solid var(--hair); margin: 0 !important; }
-.link-list li:last-child { border-bottom: 1px solid var(--hair); }
-.link-list a { text-decoration: none; }
-.link-list a:hover { color: var(--ink); }
-.signoff { margin-top: 3rem; }
-.signoff em { font-style: normal; color: var(--soft); }
-.contact-heading { margin-top: 3rem !important; }
-.doc-body strong { color: var(--ink); font-weight: 600; }
-
-/* ---------- Small screens ---------- */
-
-@media (max-width: 56rem) {
-  .app { grid-template-columns: 4rem minmax(0, 1fr); }
-  .app .no { display: none; }
-  .app .icon { width: 4rem; }
-  .app .links { grid-column: 2; display: flex; flex-wrap: wrap; }
-  .support-grid { grid-template-columns: minmax(0, 1fr); }
-}
-
-@media (max-width: 34rem) {
-  .bar nav { gap: 1rem; font-size: 0.92rem; }
-  .pipes { gap: 0.3rem; }
-  .read { border-width: 1.5px; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12), 0 0 12px rgba(255, 255, 255, 0.35); }
-  .wall-caption { font-size: 1rem; }
-  .foot p { margin-left: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pipe::before, .read, .arc-line { transition: none !important; }
+@media (max-width: 620px) {
+  .help { grid-template-columns: 3rem minmax(0, 1fr); align-items: start; }
+  .help .icon { width: 3rem; height: 3rem; }
+  .help .chip { display: none; }
+  .bar { padding-top: 1.1rem; padding-bottom: 1.1rem; }
+  .bar nav { gap: 0.9rem; font-size: 1rem; }
+  .app { grid-template-columns: 3.4rem minmax(0, 1fr); gap: 1.1rem; }
+  .icon { width: 3.4rem; height: 3.4rem; }
+  .chip { grid-column: 2; justify-self: start; height: 0.6rem; grid-template-columns: repeat(5, 2.2rem); order: -1; }
+  .chip i { transform: scaleX(0); transform-origin: left; }
+  .app h3 { font-size: 1.4rem; }
+  .contact-list div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .foot p { margin-left: 0; width: 100%; }
 }

@@ -1,64 +1,161 @@
-// KSQ Studios. Two small things, neither of which stores or sends anything.
+// KSQ Studios. Motion for the home page. It stores nothing and sends
+// nothing.
 //
-// 1. The wall: the ten apps' arcs rise when the page opens, and each
-//    one's reading drifts to a new place now and then, as if live.
-//    Pointing at an arc names its app.
-// 2. Each app entry draws its arc in when it scrolls into view.
+// 1. The entrance: the headline's words rise in while the fan deck flicks
+//    open. This is the only thing that moves on its own.
+// 2. The deck follows the pointer: strips near it rise in a wave, the
+//    nearest is named underneath, and the page takes a wash of its color.
+//    Keyboard focus does the same for the focused strip.
+// 3. Choosing a strip jumps to that app and draws its colors across the
+//    top of its row.
+// 4. The spectrum band slides sideways as the page scrolls.
+// 5. Each app's five-color chip fills in when its row comes into view.
+//
+// With reduced motion on, everything is shown in its final state and only
+// the pointer and focus responses remain.
 
 (function () {
   var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
 
-  // ---------- 1. The wall ----------
+  // ---------- 1. Entrance ----------
 
-  var wall = document.getElementById('wall');
-  if (wall) {
-    var pipes = Array.prototype.slice.call(wall.querySelectorAll('.pipe'));
-    var caption = document.getElementById('wall-caption');
-    var resting = caption.innerHTML;
-
-    // Where each arc reads to begin with, top 0 to bottom 1.
-    var start = [0.62, 0.3, 0.74, 0.55, 0.85, 0.2, 0.4, 0.66, 0.48, 0.36];
-    pipes.forEach(function (p, i) {
-      p.style.setProperty('--at', start[i]);
-      p.style.setProperty('--delay', (i * 0.07) + 's');
-    });
-
-    requestAnimationFrame(function () { wall.classList.add('is-up'); });
-
-    if (!still) {
-      setInterval(function () {
-        var p = pipes[Math.floor(Math.random() * pipes.length)];
-        var now = parseFloat(p.style.getPropertyValue('--at'));
-        var next = Math.min(0.9, Math.max(0.1, now + (Math.random() - 0.5) * 0.5));
-        p.style.setProperty('--at', next.toFixed(3));
-      }, 900);
-    }
-
-    function point(p) {
-      pipes.forEach(function (o) { o.classList.toggle('is-on', o === p); });
-      wall.classList.toggle('is-pointing', !!p);
-      if (p) {
-        caption.innerHTML = '';
-        var b = document.createElement('b');
-        b.textContent = p.dataset.name + '.';
-        var s = document.createElement('span');
-        s.textContent = ' ' + p.dataset.tag;
-        caption.appendChild(b);
-        caption.appendChild(s);
-      } else {
-        caption.innerHTML = resting;
-      }
-    }
-
-    pipes.forEach(function (p) {
-      p.addEventListener('mouseenter', function () { point(p); });
-      p.addEventListener('focus', function () { point(p); });
-      p.addEventListener('mouseleave', function () { point(null); });
-      p.addEventListener('blur', function () { point(null); });
+  var headline = document.getElementById('headline');
+  if (headline) {
+    var words = headline.textContent.trim().split(/\s+/);
+    headline.setAttribute('aria-label', headline.textContent.trim());
+    headline.textContent = '';
+    words.forEach(function (w, n) {
+      var span = document.createElement('span');
+      span.className = 'w';
+      span.setAttribute('aria-hidden', 'true');
+      span.style.setProperty('--n', n);
+      span.textContent = w;
+      headline.appendChild(span);
+      if (n < words.length - 1) headline.appendChild(document.createTextNode(' '));
     });
   }
 
-  // ---------- 2. The entries ----------
+  var deck = document.getElementById('deck');
+  var caption = document.getElementById('deck-caption');
+  var strips = deck ? Array.prototype.slice.call(deck.querySelectorAll('.strip')) : [];
+  var resting = caption ? caption.innerHTML : '';
+
+  strips.forEach(function (s, i) { s.style.setProperty('--i', i); });
+
+  // Two frames so the closed state paints before anything opens.
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      root.classList.add('is-loaded');
+      if (deck) deck.classList.add('is-open');
+    });
+  });
+
+  // The deck answers the pointer only after it has finished opening, so the
+  // entrance is never interrupted halfway.
+  if (deck) {
+    setTimeout(function () { deck.classList.add('is-live'); }, still ? 0 : 1700);
+  }
+
+  // ---------- 2. Following the pointer ----------
+
+  var current = null;
+
+  function name(s) {
+    if (!caption) return;
+    if (!s) { caption.innerHTML = resting; return; }
+    caption.innerHTML = '';
+    var b = document.createElement('b');
+    b.textContent = s.dataset.name + '.';
+    caption.appendChild(b);
+    caption.appendChild(document.createTextNode(' ' + s.dataset.tag));
+  }
+
+  function tint(s) {
+    var c = s ? s.querySelectorAll('i')[2].style.getPropertyValue('--c') : '#ffffff';
+    root.style.setProperty('--tint', c);
+  }
+
+  // Lift each strip by how close its angle is to `angle`, in a bell curve
+  // about two strips wide. Pass null to settle the whole deck.
+  function wave(angle) {
+    var spread = parseFloat(getComputedStyle(deck).getPropertyValue('--spread')) || 9;
+    var nearest = null, best = Infinity;
+    strips.forEach(function (s, i) {
+      var a = (i - 4.5) * spread;
+      var d = angle === null ? Infinity : Math.abs(angle - a);
+      var lift = angle === null ? 0 : Math.exp(-Math.pow(d / (spread * 1.3), 2));
+      s.style.setProperty('--lift', (-2.6 * lift).toFixed(3) + 'rem');
+      if (d < best) { best = d; nearest = s; }
+    });
+    if (angle === null || best > spread * 1.5) nearest = null;
+    if (nearest !== current) {
+      strips.forEach(function (s) { s.classList.toggle('is-on', s === nearest); });
+      deck.classList.toggle('is-pointing', !!nearest);
+      name(nearest);
+      tint(nearest);
+      current = nearest;
+    }
+  }
+
+  function angleFrom(e) {
+    var r = deck.getBoundingClientRect();
+    var rivet = deck.querySelector('.rivet').getBoundingClientRect();
+    var cx = rivet.left + rivet.width / 2;
+    var cy = rivet.top + rivet.height / 2;
+    var dx = e.clientX - cx, dy = e.clientY - cy;
+    // Ignore the pointer below the rivet or well outside the fan.
+    if (dy > 10 || Math.hypot(dx, dy) > r.height * 1.05) return null;
+    return Math.atan2(dx, -dy) * 180 / Math.PI;
+  }
+
+  if (deck) {
+    var wrap = deck.parentElement;
+    wrap.addEventListener('pointermove', function (e) {
+      if (!deck.classList.contains('is-live')) return;
+      wave(angleFrom(e));
+    });
+    wrap.addEventListener('pointerleave', function () { wave(null); });
+
+    strips.forEach(function (s, i) {
+      s.addEventListener('focus', function () {
+        var spread = parseFloat(getComputedStyle(deck).getPropertyValue('--spread')) || 9;
+        wave((i - 4.5) * spread);
+      });
+      s.addEventListener('blur', function () { wave(null); });
+
+      // ---------- 3. Jumping to an app ----------
+      s.addEventListener('click', function () {
+        var target = document.querySelector(s.getAttribute('href'));
+        if (!target) return;
+        target.classList.remove('is-arrived');
+        setTimeout(function () {
+          void target.offsetWidth;
+          target.classList.add('is-arrived');
+          target.classList.add('is-seen');
+        }, still ? 0 : 650);
+      });
+    });
+  }
+
+  // ---------- 4. Spectrum ----------
+
+  var track = document.getElementById('spectrum');
+  if (track && !still) {
+    var ticking = false;
+    function slide() {
+      var half = track.scrollWidth / 2;
+      var x = -((window.scrollY * 0.6) % half);
+      track.style.setProperty('--x', x.toFixed(1) + 'px');
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(slide); }
+    }, { passive: true });
+    slide();
+  }
+
+  // ---------- 5. Chips ----------
 
   var apps = document.querySelectorAll('.app');
   if (still || !('IntersectionObserver' in window)) {
@@ -68,7 +165,7 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('is-seen'); io.unobserve(e.target); }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.5 });
     apps.forEach(function (a) { io.observe(a); });
   }
 })();
